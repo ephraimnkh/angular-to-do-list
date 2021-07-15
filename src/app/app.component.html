@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="form-group" style="padding-top: 25px">
+        <label for="taskName">Task Name</label>
+        <br>
+        <input class="form-control" id="taskName" [(ngModel)]="taskName">
+        <br>
+        <label for="dueDate">Due Date</label>
+        <br>
+        <input class="form-control" type="date" id="dueDate" [(ngModel)]="dueDate">
+        <br>
+        <label for="taskStatus">Task Status</label>
+        <br>
+        <select class="form-control" id="taskStatus" [(ngModel)]="taskStatus">
+          <option>
+            In Progress
+          </option>
+          <option>
+            Complete
+          </option>
+        </select>
+        <br>
+        <label for="taskDescription">Task Description</label>
+        <br>
+        <textarea class="form-control" id="taskDescription" rows="2" [(ngModel)]="taskDescription"></textarea>
+        <br>
+        <div class="btn-toolbar">
+          <button class="btn btn-primary mr-1" (click)="newTask()" [disabled]="taskName.length == 0">Save Task {{tasks.length}}</button>
+          <button class="btn btn-info" (click)="deleteCompleted()" [disabled]="completed == 0">Delete Completed Tasks {{completed}}</button>
+        </div>
+    </div>
+    <table class="table table-hover">
+      <tr>
+        <th>
+          #
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Due Date
+        </th>
+        <th>
+          Status
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Delete?
+        </th>
+      </tr>
+      <tr *ngFor="let task of tasks; let i = index">
+        <td>
+          {{i+1}}
+        </td>
+        <td>
+          {{task.taskName}}
+        </td>
+        <td>
+          {{task.dueDate}}
+        </td>
+        <td>
+          {{task.taskStatus}}
+        </td>
+        <td>
+          {{task.taskDescription}}
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteTask(i)">Delete?</button>
+        </td>
+      </tr>
+    </table>
+</div>
+
+
+
+
